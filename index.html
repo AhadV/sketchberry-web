@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="sb_favicon.png">
+    <meta property="og:title" content="SketchBerry - Turn Photos into Coloring Pages">
+<meta property="og:description" content="Transform your photos into printable coloring pages with the SketchBerry iOS app.">
+<meta property="og:image" content="https://i.imgur.com/33ceea0c.jpg">
+<meta property="og:url" content="https://sketchberry.app">
+<meta property="og:type" content="website">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SketchBerry transforms your photos into fun, printable coloring pages and books. Download the iOS app now!">
@@ -1006,23 +1011,33 @@
       </section>
     </div>
     <div class="footer">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <img src="https://i.imgur.com/HdlGjCc.png" alt="SketchBerry logo" class="footer-logo-icon">
-          <div class="footer-logo-text">SketchBerry</div>
-        </div>
-        <div class="footer-links">
-          <a href="https://docs.google.com/document/d/e/2PACX-1vTfrY-nDMoEKnxlH3f8tYQWNi_5t2xTIwxRlCTJ-4ahmHO2Q1yJR0wjEHeH2pof4A73ukEO9gZgshtY/pub" target="_blank" rel="noopener">Privacy Policy</a>
-          <a href="#" onclick="toggleFAQ()">FAQ</a>
-          <a href="mailto:support@sketchberry.app">Contact</a>
-          <a href="https://docs.google.com/document/d/e/2PACX-1vRkdVUb6AZfNEwhvz8Qk0WroqmsqCK3MWZucytfoHNRvmcNUCd45BTJr-c_LzxNhZwYG6kT0r6nrVbV/pub" target="_blank" rel="noopener">Terms of Use</a>
-          <a href="#" class="download-link" aria-label="Download SketchBerry on the App Store">
-            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download SketchBerry on the App Store" class="app-store-badge" style="height: 60px;">
-          </a>
-        </div>
+  <div class="footer-content">
+    <div class="footer-logo" style="flex-direction: column; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="https://i.imgur.com/HdlGjCc.png" alt="SketchBerry logo" class="footer-logo-icon">
+        <div class="footer-logo-text">SketchBerry</div>
+      </div>
+      <div style="margin-top: 8px; display: flex; gap: 12px;">
+        <a href="https://instagram.com/sketchberryapp" target="_blank" aria-label="Instagram" style="color: var(--paper-white); font-size: 20px;">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://tiktok.com/sketchberryapp" target="_blank" aria-label="TikTok" style="color: var(--paper-white); font-size: 20px;">
+          <i class="fab fa-tiktok"></i>
+        </a>
       </div>
     </div>
-    <script>
+    <div class="footer-links">
+      <a href="https://docs.google.com/document/d/e/2PACX-1vTfrY-nDMoEKnxlH3f8tYQWNi_5t2xTIwxRlCTJ-4ahmHO2Q1yJR0wjEHeH2pof4A73ukEO9gZgshtY/pub" target="_blank" rel="noopener">Privacy Policy</a>
+      <a href="#" onclick="toggleFAQ()">FAQ</a>
+      <a href="mailto:support@sketchberry.app">Contact</a>
+      <a href="https://docs.google.com/document/d/e/2PACX-1vRkdVUb6AZfNEwhvz8Qk0WroqmsqCK3MWZucytfoHNRvmcNUCd45BTJr-c_LzxNhZwYG6kT0r6nrVbV/pub" target="_blank" rel="noopener">Terms of Use</a>
+      <a href="#" class="download-link" aria-label="Download SketchBerry on the App Store">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download SketchBerry on the App Store" class="app-store-badge" style="height: 60px;">
+      </a>
+    </div>
+  </div>
+</div>
+<script>
       // Testimonial rotation
 let currentTestimonial = 1;
 const testimonialCount = 3;
@@ -1157,6 +1172,5 @@ document.addEventListener("DOMContentLoaded", () => {
     <div id="faqItems"></div>
   </div>
 </div>
-
   </body>
 </html>
