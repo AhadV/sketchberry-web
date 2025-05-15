@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SketchBerry transforms your photos into fun, printable coloring pages and books. Download the iOS app now!">
+    <meta name="keywords" content="coloring pages, photo to coloring book, iOS app, SketchBerry">
+    <title>SketchBerry - Bring Photos to Life</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rounded+Mplus+1c:wght@300;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* Primary Colors */
+        --berryRed: #FF5A5F;
+        --darkBerry: #D94045;
+        /* Secondary Colors */
+        --softGreen: #A8D5A2;
+        --darkGreen: #76A370;
+        /* Accent Colors */
+        --pencilYellow: #FFDE59;
+        --lightYellow: #FFF5B3;
+        /* Neutral Colors */
+        --paper-white: #F9F9F7;
+        --charcoal: #333333;
+        --slate: #445566;
+        --sketchGray: #CCCCCC;
+        /* Spacing System */
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-xxl: 3rem;
+        /* Border Radius */
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --radius-round: 50%;
+        /* Shadows */
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 6px 12px rgba(0, 0, 0, 0.15);
+        --shadow-glow: 0 2px 4px rgba(217, 64, 69, 0.3);
+        /* Transitions */
+        --transition-normal: 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(180deg, #FFF5F5 0%, #FFD5D5 100%);
+        color: var(--charcoal);
+        line-height: 1.6;
+      }
+
+      /* Container */
+      .app-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--space-xl);
+      }
+
+      /* Section Divider */
+      .section-divider {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: var(--space-xl) 0;
+        position: relative;
+      }
+
+      .divider-wave {
+        width: 100%;
+        height: 20px;
+        fill: var(--berryRed);
+        opacity: 0.1;
+        margin: var(--space-sm) 0;
+      }
+
+      .divider-icon {
+        width: 30px;
+        height: 30px;
+        fill: var(--berryRed);
+        filter: drop-shadow(var(--shadow-glow));
+      }
+
+      /* Fade In Animation */
+      .fade-in-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .fade-in-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Hero Section */
+      .hero {
+        display: flex;
+        align-items: center;
+        gap: var(--space-xl);
+        background: var(--paper-white);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        box-shadow: var(--shadow-md);
+        margin-bottom: var(--space-xl);
+      }
+
+      .hero-content {
+        flex: 1;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        margin-bottom: var(--space-lg);
+      }
+
+      .logo-icon {
+        width: 60px;
+        height: 60px;
+        margin-right: var(--space-md);
+        filter: drop-shadow(var(--shadow-md));
+      }
+
+      .logo-text {
+        font-family: 'Rounded Mplus 1c', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--berryRed);
+        letter-spacing: 0.5px;
+      }
+
+      .tagline {
+        font-family: 'Rounded Mplus 1c', sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: var(--space-sm);
+        color: var(--berryRed);
+        letter-spacing: 0.5px;
+      }
+
+      .sub-headline {
+        font-size: 1.5rem;
+        color: var(--charcoal);
+        margin-bottom: var(--space-lg);
+        font-weight: 500;
+      }
+
+      .description {
+        font-size: 1.1rem;
+        margin-bottom: var(--space-lg);
+        max-width: 500px;
+        color: var(--slate);
+        line-height: 1.7;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: var(--space-md);
+      }
+
+      .app-store-badge {
+        height: 80px;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-md);
+        transition: transform var(--transition-normal);
+      }
+
+      .app-store-badge:hover {
+        transform: scale(1.05);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-sm) var(--space-md);
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        text-decoration: none;
+        transition: all var(--transition-normal);
+        cursor: pointer;
+        border: none;
+        font-size: 1rem;
+      }
+
+      .btn-secondary {
+        background-color: var(--darkBerry);
+        color: var(--paper-white);
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--berryRed);
+        color: var(--paper-white);
+      }
+
+      .device-mockup {
+        flex: 1;
+      }
+
+      .device-frame {
+        background: var(--paper-white);
+        border: 4px solid var(--softGreen);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        width: 420px;
+        height: 840px;
+        overflow: hidden;
+        margin: 0 auto;
+        padding: var(--space-sm);
+      }
+
+      .screen {
+        background: var(--paper-white);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+
+      .app-screenshot {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0;
+        transition: opacity var(--transition-normal);
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .app-screenshot.active {
+        opacity: 1;
+      }
+
+      .screenshot-caption {
+        font-size: 0.9rem;
+        color: var(--berryRed);
+        text-align: center;
+        margin-top: var(--space-sm);
+        font-weight: 600;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+      }
+
+      .nav-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: var(--radius-round);
+        background: var(--sketchGray);
+        cursor: pointer;
+        transition: all var(--transition-normal);
+      }
+
+      .nav-dot:hover {
+        background: var(--darkBerry);
+      }
+
+      .nav-dot.active {
+        background: var(--darkBerry);
+      }
+
+      /* Testimonials */
+      .testimonials {
+        margin: var(--space-xl) 0;
+        background: var(--darkBerry);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        box-shadow: var(--shadow-md);
+        text-align: center;
+        position: relative;
+      }
+
+      .section-heading {
+        font-family: 'Rounded Mplus 1c', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 700;
+        margin-bottom: var(--space-lg);
+        color: var(--berryRed);
+        letter-spacing: 0.5px;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--space-lg);
+        animation: pulse 2s infinite;
+      }
+
+      .stars {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .star {
+        width: 2rem;
+        height: 2rem;
+        fill: var(--pencilYellow);
+      }
+
+      .rating-number {
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-left: var(--space-md);
+        color: var(--charcoal);
+        background: var(--paper-white);
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-md);
+      }
+
+      .testimonials-container {
+        position: relative;
+      }
+
+      .testimonial {
+        opacity: 0;
+        transition: opacity var(--transition-normal);
+        position: absolute;
+        width: 100%;
+        left: 0;
+      }
+
+      .testimonial.active {
+        opacity: 1;
+        position: relative;
+      }
+
+      .testimonial-quote {
+        font-size: 2rem;
+        color: var(--paper-white);
+        margin-bottom: var(--space-md);
+        opacity: 0.5;
+      }
+
+      .testimonial-text {
+        font-size: 1.2rem;
+        font-style: italic;
+        margin-bottom: var(--space-md);
+        color: var(--paper-white);
+      }
+
+      .testimonial-text b {
+        color: var(--pencilYellow);
+      }
+
+      .testimonial-author {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--lightYellow);
+        font-family: 'Rounded Mplus 1c', sans-serif;
+      }
+
+      .testimonial-nav {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-lg);
+        margin-top: var(--space-lg);
+      }
+
+      .testimonial-nav-btn {
+        background: var(--paper-white);
+        border: none;
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-round);
+        font-size: 1.2rem;
+        color: var(--darkBerry);
+        cursor: pointer;
+        transition: all var(--transition-normal);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-md);
+      }
+
+      .testimonial-nav-btn:hover {
+        background: var(--darkBerry);
+        color: var(--paper-white);
+      }
+
+      /* How It Works */
+      .how-it-works {
+        margin: var(--space-xl) 0;
+        background: var(--paper-white);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        box-shadow: var(--shadow-md);
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+      }
+
+      .step {
+        background: var(--paper-white);
+        border-radius: var(--radius-lg);
+        padding: var(--space-md);
+        box-shadow: var(--shadow-md);
+        text-align: center;
+        transition: all var(--transition-normal);
+      }
+
+      .step:hover {
+        transform: scale(1.05);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .step-image {
+  width: auto;
+  max-height: 320px;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+  box-shadow: 0 4px 8px rgba(217, 64, 69, 0.2);
+  padding: var(--space-sm);
+  background: var(--paper-white);
+}
+
+      .step-title {
+        font-family: 'Rounded Mplus 1c', sans-serif;
+        font-size: 1.4rem;
+        margin-bottom: var(--space-sm);
+        color: var(--charcoal);
+      }
+
+      .step-description {
+        font-size: 1rem;
+        color: var(--slate);
+      }
+
+      .step-result {
+        margin-top: var(--space-md);
+      }
+
+      .result-image {
+  width: auto;
+  max-height: 160px;
+  border-radius: var(--radius-md);
+  border-bottom: 3px solid var(--darkBerry);
+  margin-bottom: var(--space-sm);
+  padding: var(--space-sm);
+  background: var(--paper-white);
+  box-shadow: 0 4px 8px rgba(217, 64, 69, 0.2);
+}
+
+      .result-title {
+        font-family: 'Rounded Mplus 1c', sans-serif;
+        font-size: 1.2rem;
+        color: var(--berryRed);
+        margin-bottom: var(--space-xs);
+        font-weight: 600;
+      }
+
+      .result-description {
+        font-size: 0.9rem;
+        color: var(--slate);
+      }
+
+      /* Gallery Section */
+      .gallery {
+        margin: var(--space-xl) 0;
+        background: var(--paper-white);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        box-shadow: var(--shadow-md);
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+      }
+
+      .gallery-item {
+        position: relative;
+        text-align: center;
+        transition: all var(--transition-normal);
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .gallery-image {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        border-radius: var(--radius-md);
+        border: 2px solid var(--darkBerry);
+        box-shadow: 0 4px 8px rgba(217, 64, 69, 0.2);
+      }
+
+      .gallery-caption {
+        font-size: 0.9rem;
+        color: var(--berryRed);
+        margin-top: var(--space-sm);
+        font-weight: 600;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        text-align: center;
+        margin: var(--space-xl) 0;
+        background: var(--paper-white);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        box-shadow: var(--shadow-md);
+      }
+
+      /* Features */
+      .features {
+        margin: var(--space-xl) 0;
+        background: var(--paper-white);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        box-shadow: var(--shadow-md);
+      }
+
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-lg);
+        background: var(--paper-white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        margin-bottom: var(--space-lg);
+        border-left: 4px solid var(--darkBerry);
+        transition: all var(--transition-normal);
+      }
+
+      .feature:hover {
+        transform: scale(1.02);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .feature-image {
+        width: auto;
+        max-height: 160px;
+        border-radius: var(--radius-md);
+        box-shadow: 0 4px 8px rgba(217, 64, 69, 0.2);
+        transform: rotate(-2deg);
+        padding: var(--space-sm);
+        background: var(--paper-white);
+      }
+
+      .feature-content {
+        flex: 1;
+      }
+
+      .feature-title {
+        font-family: 'Rounded Mplus 1c', sans-serif;
+        font-size: 1.4rem;
+        margin-bottom: var(--space-sm);
+        color: var(--charcoal);
+      }
+
+      .feature-desc {
+        font-size: 1rem;
+        color: var(--slate);
+      }
+
+      .feature-caption {
+        font-size: 0.8rem;
+        color: var(--berryRed);
+        margin-top: var(--space-xs);
+        font-weight: 600;
+      }
+
+      /* Footer */
+      .footer {
+        padding: var(--space-lg);
+        background: var(--darkBerry);
+        color: var(--paper-white);
+        text-align: center;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .footer-logo-icon {
+        width: 30px;
+        height: 30px;
+        margin-right: var(--space-sm);
+      }
+
+      .footer-logo-text {
+        font-family: 'Rounded Mplus 1c', sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: var(--space-lg);
+      }
+
+      .footer a {
+        color: var(--paper-white);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all var(--transition-normal);
+        position: relative;
+      }
+
+      .footer a:hover {
+        color: var(--softGreen);
+      }
+
+      .footer a:hover::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: var(--softGreen);
+        bottom: -4px;
+        left: 0;
+      }
+
+      /* Animations */
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 1024px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+        .cta-buttons {
+          justify-content: center;
+        }
+        .device-frame {
+          width: 360px;
+          height: 720px;
+        }
+        .steps {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .app-container {
+          padding: var(--space-lg);
+        }
+        .tagline {
+          font-size: 2.4rem;
+        }
+        .sub-headline {
+          font-size: 1.2rem;
+        }
+        .steps {
+          grid-template-columns: 1fr;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+        .app-store-badge {
+          margin-bottom: var(--space-sm);
+          height: 60px;
+        }
+        .star {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+        .device-frame {
+          width: 320px;
+          height: 640px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .tagline {
+          font-size: 2rem;
+        }
+        .description {
+          font-size: 1rem;
+        }
+        .device-frame {
+          width: 280px;
+          height: 560px;
+        }
+        .footer-content {
+          flex-direction: column;
+          gap: var(--space-md);
+        }
+        .footer-links {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .section-heading {
+          font-size: 2rem;
+        }
+        .feature-image {
+          max-height: 120px;
+        }
+        .step-image {
+          max-height: 250px;
+        }
+      }
+      .cta-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  text-align: center;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <section class="hero fade-in-section">
+        <div class="hero-content">
+          <div class="logo">
+            <img src="https://i.imgur.com/HdlGjCc.png" alt="SketchBerry logo" class="logo-icon">
+            <div class="logo-text">SketchBerry</div>
+          </div>
+          <h1 class="tagline">Bring Photos to Life</h1>
+          <p class="sub-headline">Create Fun Coloring Pages</p>
+          <p class="description">Transform photos into printable coloring pages or custom books with magical themes. Perfect for kids and crafts!</p>
+          <div class="cta-buttons">
+            <a href="#" class="download-link" aria-label="Download SketchBerry on the App Store">
+              <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download SketchBerry on the App Store" class="app-store-badge">
+            </a>
+            <a href="#" class="btn btn-secondary" aria-label="Learn more about SketchBerry">Download Now!</a>
+          </div>
+        </div>
+        <div class="device-mockup">
+          <div class="device-frame">
+            <div class="screen">
+              <img src="https://i.imgur.com/whbDyF9.png" alt="Main dashboard screenshot" class="app-screenshot active" id="screenshot1">
+              <img src="https://i.imgur.com/a9B6YCM.png" alt="Completed coloring page generation ready to print duck" class="app-screenshot" id="screenshot2">
+              <img src="https://i.imgur.com/qbwSbZd.png" alt="Completed coloring page generation ready to print screenshot puppy" class="app-screenshot" id="screenshot3">
+            </div>
+          </div>
+          <div class="nav-buttons">
+            <div class="nav-dot active" data-index="1" role="button" aria-label="View screenshot 1"></div>
+            <div class="nav-dot" data-index="2" role="button" aria-label="View screenshot 2"></div>
+            <div class="nav-dot" data-index="3" role="button" aria-label="View screenshot 3"></div>
+          </div>
+          <p class="screenshot-caption">Explore the app and create your masterpiece!</p>
+        </div>
+      </section>
+      <div class="section-divider">
+        <svg class="divider-wave" viewBox="0 0 1200 20">
+          <path d="M0,10 Q150,20 300,10 T600,10 T900,10 T1200,10 V20 H0 Z" />
+        </svg>
+        <svg class="divider-icon" viewBox="0 0 24 24">
+          <path d="M12 2C8 2 4 6 4 10c0 4 4 8 8 8s8-4 8-8c0-4-4-8-8-8z" fill="currentColor"/>
+        </svg>
+        <svg class="divider-wave" viewBox="0 0 1200 20">
+          <path d="M0,10 Q150,0 300,10 T600,10 T900,10 T1200,10 V0 H0 Z" />
+        </svg>
+      </div>
+      <section class="testimonials fade-in-section">
+  <h2 class="section-heading" style="color: var(--paper-white);">Loved by Users</h2>
+  <div class="rating">
+    <div class="stars" style="margin-bottom: 15px;">
+      <svg class="star" viewBox="0 0 24 24" style="fill: gold;">
+        <path d="M12 .587l3.668 7.431 8.332 1.211-6 5.846 1.416 8.255L12 18.893l-7.416 3.897 1.416-8.255-6-5.846 8.332-1.211z" />
+      </svg>
+      <svg class="star" viewBox="0 0 24 24" style="fill: gold;">
+        <path d="M12 .587l3.668 7.431 8.332 1.211-6 5.846 1.416 8.255L12 18.893l-7.416 3.897 1.416-8.255-6-5.846 8.332-1.211z" />
+      </svg>
+      <svg class="star" viewBox="0 0 24 24" style="fill: gold;">
+        <path d="M12 .587l3.668 7.431 8.332 1.211-6 5.846 1.416 8.255L12 18.893l-7.416 3.897 1.416-8.255-6-5.846 8.332-1.211z" />
+      </svg>
+      <svg class="star" viewBox="0 0 24 24" style="fill: gold;">
+        <path d="M12 .587l3.668 7.431 8.332 1.211-6 5.846 1.416 8.255L12 18.893l-7.416 3.897 1.416-8.255-6-5.846 8.332-1.211z" />
+      </svg>
+      <svg class="star" viewBox="0 0 24 24" style="fill: gold;">
+        <path d="M12 .587l3.668 7.431 8.332 1.211-6 5.846 1.416 8.255L12 18.893l-7.416 3.897 1.416-8.255-6-5.846 8.332-1.211z" />
+      </svg>
+    </div>
+    <div class="rating-number" style="background-color: var(--paper-white); color: var(--darkBerry);">4.9 <span style="font-size: 0.9rem;">1000+ Reviews</span></div>
+  </div>
+  <div class="testimonials-container">
+    <div class="testimonial active" id="testimonial1" style="background: rgba(255,255,255,0.1); border-radius: var(--radius-md);">
+      <i class="fas fa-quote-left testimonial-quote" style="color: var(--pencilYellow);"></i>
+      <p class="testimonial-text" style="color: var(--paper-white);"><b>So fun!</b> My kids love coloring their own photos!</p>
+      <p class="testimonial-author">Sarah M., Mom of 2</p>
+    </div>
+    <div class="testimonial" id="testimonial2" style="background: rgba(255,255,255,0.1); border-radius: var(--radius-md);">
+      <i class="fas fa-quote-left testimonial-quote" style="color: var(--pencilYellow);"></i>
+      <p class="testimonial-text" style="color: var(--paper-white);"><b>Perfect for class!</b> Kids are engaged with their own pages.</p>
+      <p class="testimonial-author">James T., Art Teacher</p>
+    </div>
+    <div class="testimonial" id="testimonial3" style="background: rgba(255,255,255,0.1); border-radius: var(--radius-md);">
+      <i class="fas fa-quote-left testimonial-quote" style="color: var(--pencilYellow);"></i>
+      <p class="testimonial-text" style="color: var(--paper-white);"><b>Unique gift!</b> Made a coloring book from vacation photos.</p>
+      <p class="testimonial-author">Lisa K., Family Photographer</p>
+    </div>
+
+</section>
+      <div class="section-divider">
+        <svg class="divider-wave" viewBox="0 0 1200 20">
+          <path d="M0,10 Q150,20 300,10 T600,10 T900,10 T1200,10 V20 H0 Z" />
+        </svg>
+        <svg class="divider-icon" viewBox="0 0 24 24">
+          <path d="M12 2C8 2 4 6 4 10c0 4 4 8 8 8s8-4 8-8c0-4-4-8-8-8z" fill="currentColor"/>
+        </svg>
+        <svg class="divider-wave" viewBox="0 0 1200 20">
+          <path d="M0,10 Q150,0 300,10 T600,10 T900,10 T1200,10 V0 H0 Z" />
+        </svg>
+      </div>
+      <section class="how-it-works fade-in-section">
+        <h2 class="section-heading">Create Your Masterpiece</h2>
+        <div class="steps">
+          <div class="step">
+            <img src="https://i.imgur.com/xoAbiSo.png" alt="Sign in screenshot" class="step-image" loading="lazy">
+            <h3 class="step-title">Sign In</h3>
+            <p class="step-description">Start by signing into the SketchBerry app.</p>
+            <div class="step-result">
+              <img src="https://i.imgur.com/uqmayTo.png" alt="Paywall screenshot" class="result-image" loading="lazy">
+              <h4 class="result-title">Choose Your Plan</h4>
+              <p class="result-description">Select a plan to unlock full features.</p>
+            </div>
+          </div>
+          <div class="step">
+            <img src="https://i.imgur.com/uS2FH72.png" alt="Main dashboard screenshot" class="step-image" loading="lazy">
+            <h3 class="step-title">Explore Dashboard</h3>
+            <p class="step-description">Navigate the intuitive dashboard to start creating.</p>
+            <div class="step-result">
+              <img src="https://i.imgur.com/ov5eFom.png" alt="Create coloring page prompt selection screenshot" class="result-image" loading="lazy">
+              <h4 class="result-title">Select a Prompt</h4>
+              <p class="result-description">Choose a creative prompt for your coloring page.</p>
+            </div>
+          </div>
+          <div class="step">
+            <img src="https://i.imgur.com/cE0hlZb.png" alt="Pending coloring page creation puppy" class="step-image" loading="lazy">
+            <h3 class="step-title">Create & Print</h3>
+            <p class="step-description">Watch your page come to life and print it!</p>
+            <div class="step-result">
+              <img src="https://i.imgur.com/FS03dov.png" alt="Completed coloring page generation ready to print screenshot another puppy" class="result-image" loading="lazy">
+              <h4 class="result-title">Puppy Magic</h4>
+              <p class="result-description">A fun, printable coloring page.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="section-divider">
+        <svg class="divider-wave" viewBox="0 0 1200 20">
+          <path d="M0,10 Q150,20 300,10 T600,10 T900,10 T1200,10 V20 H0 Z" />
+        </svg>
+        <svg class="divider-icon" viewBox="0 0 24 24">
+          <path d="M12 2C8 2 4 6 4 10c0 4 4 8 8 8s8-4 8-8c0-4-4-8-8-8z" fill="currentColor"/>
+        </svg>
+        <svg class="divider-wave" viewBox="0 0 1200 20">
+          <path d="M0,10 Q150,0 300,10 T600,10 T900,10 T1200,10 V0 H0 Z" />
+        </svg>
+      </div>
+      <section class="gallery fade-in-section">
+        <h2 class="section-heading">Explore Your Creations</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="https://i.imgur.com/mhtPuiE.png" alt="Completed HD image to coloring page output" class="gallery-image" loading="lazy">
+            <p class="gallery-caption">HD Coloring Page</p>
+          </div>
+          <div class="gallery-item">
+            <img src="https://i.imgur.com/4LwXjsS.png" alt="Very good completed coloring page generation ready to print puppy another" class="gallery-image" loading="lazy">
+            <p class="gallery-caption">Puppy Adventure</p>
+          </div>
+          <div class="gallery-item">
+            <img src="https://i.imgur.com/a9B6YCM.png" alt="Very good completed coloring page generation ready to print duck" class="gallery-image" loading="lazy">
+            <p class="gallery-caption">Duck Delight</p>
+          </div>
+          <div class="gallery-item">
+            <img src="https://i.imgur.com/qbwSbZd.png" alt="Completed coloring page generation ready to print screenshot puppy" class="gallery-image" loading="lazy">
+            <p class="gallery-caption">Puppy Playtime</p>
+          </div>
+          <div class="gallery-item">
+      <img src="https://i.imgur.com/uS2FH72.png" alt="SketchBerry dashboard screenshot" class="gallery-image" loading="lazy">
+      <p class="gallery-caption">Dashboard View</p>
+    </div>
+          <div class="gallery-item">
+            <img src="https://i.imgur.com/FS03dov.png" alt="Completed coloring page generation ready to print screenshot another puppy" class="gallery-image" loading="lazy">
+            <p class="gallery-caption">Puppy Magic</p>
+          </div>
+        </div>
+      </section>
+      <div class="section-divider">
+        <svg class="divider-wave" viewBox="0 0 1200 20">
+          <path d="M0,10 Q150,20 300,10 T600,10 T900,10 T1200,10 V20 H0 Z" />
+        </svg>
+        <svg class="divider-icon" viewBox="0 0 24 24">
+          <path d="M12 2C8 2 4 6 4 10c0 4 4 8 8 8s8-4 8-8c0-4-4-8-8-8z" fill="currentColor"/>
+        </svg>
+        <svg class="divider-wave" viewBox="0 0 1200 20">
+          <path d="M0,10 Q150,0 300,10 T600,10 T900,10 T1200,10 V0 H0 Z" />
+        </svg>
+      </div>
+      <section class="cta-section fade-in-section">
+        <h2 class="section-heading">Ready to Create?</h2>
+        <div class="cta-text-group">
+  <p class="description">Download SketchBerry and start turning your photos into coloring pages today!</p>
+  <a href="#" class="download-link" aria-label="Download SketchBerry on the App Store">
+    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download SketchBerry on the App Store" class="app-store-badge">
+  </a>
+</div>
+
+      </section>
+      <div class="section-divider">
+        <svg class="divider-wave" viewBox="0 0 1200 20">
+          <path d="M0,10 Q150,20 300,10 T600,10 T900,10 T1200,10 V20 H0 Z" />
+        </svg>
+        <svg class="divider-icon" viewBox="0 0 24 24">
+          <path d="M12 2C8 2 4 6 4 10c0 4 4 8 8 8s8-4 8-8c0-4-4-8-8-8z" fill="currentColor"/>
+        </svg>
+        <svg class="divider-wave" viewBox="0 0 1200 20">
+          <path d="M0,10 Q150,0 300,10 T600,10 T900,10 T1200,10 V0 H0 Z" />
+        </svg>
+      </div>
+      <section class="features fade-in-section">
+        <h2 class="section-heading">Spark Your Creativity</h2>
+        <div class="feature">
+          <div>
+            <img src="https://i.imgur.com/uS2FH72.png" alt="Main dashboard screenshot" class="feature-image" loading="lazy">
+            <p class="feature-caption">Intuitive Dashboard</p>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Photo to Art</h3>
+            <p class="feature-desc">Transform photos into coloring pages with themes like unicorns or dinosaurs.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div>
+            <img src="https://i.imgur.com/mhtPuiE.png" alt="Completed HD image to coloring page output" class="feature-image" loading="lazy">
+            <p class="feature-caption">HD Quality Output</p>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Print-Ready</h3>
+            <p class="feature-desc">Download as images or PDFs in Standard or HD quality.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div>
+            <img src="https://i.imgur.com/66ik8Ai.png" alt="Create coloring page prompt selection screenshot 2" class="feature-image" loading="lazy">
+            <p class="feature-caption">Prompt Selection</p>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Theme Customization</h3>
+            <p class="feature-desc">Add custom themes for a personalized coloring experience.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div>
+            <img src="https://i.imgur.com/Ngg06Ni.png" alt="Pending coloring page creation seahorses" class="feature-image" loading="lazy">
+            <p class="feature-caption">Real-Time Progress</p>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Real-Time Creation</h3>
+            <p class="feature-desc">Watch your coloring pages come to life as they’re generated.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div>
+            <img src="https://i.imgur.com/hb3frvU.png" alt="FAQ screenshot" class="feature-image" loading="lazy">
+            <p class="feature-caption">Support Resources</p>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Help & Support</h3>
+            <p class="feature-desc">Access FAQs and support directly in the app.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="https://i.imgur.com/HdlGjCc.png" alt="SketchBerry logo" class="footer-logo-icon">
+          <div class="footer-logo-text">SketchBerry</div>
+        </div>
+        <div class="footer-links">
+          <a href="https://docs.google.com/document/d/e/2PACX-1vTfrY-nDMoEKnxlH3f8tYQWNi_5t2xTIwxRlCTJ-4ahmHO2Q1yJR0wjEHeH2pof4A73ukEO9gZgshtY/pub" target="_blank" rel="noopener">Privacy Policy</a>
+          <a href="#" onclick="toggleFAQ()">FAQ</a>
+          <a href="mailto:support@sketchberry.app">Contact</a>
+          <a href="https://docs.google.com/document/d/e/2PACX-1vRkdVUb6AZfNEwhvz8Qk0WroqmsqCK3MWZucytfoHNRvmcNUCd45BTJr-c_LzxNhZwYG6kT0r6nrVbV/pub" target="_blank" rel="noopener">Terms of Use</a>
+          <a href="#" class="download-link" aria-label="Download SketchBerry on the App Store">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download SketchBerry on the App Store" class="app-store-badge" style="height: 60px;">
+          </a>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Testimonial rotation
+let currentTestimonial = 1;
+const testimonialCount = 3;
+
+function showTestimonial(index) {
+  const testimonials = document.querySelectorAll('.testimonial');
+  testimonials.forEach(t => t.classList.remove('active'));
+
+  const target = document.getElementById(`testimonial${index}`);
+  if (target) {
+    target.classList.add('active');
+    currentTestimonial = index;
+  }
+}
+
+function rotateTestimonials() {
+  showTestimonial(currentTestimonial >= testimonialCount ? 1 : currentTestimonial + 1);
+}
+
+let testimonialInterval;
+if (document.querySelector('.testimonials-container')) {
+  testimonialInterval = setInterval(rotateTestimonials, 10000);
+}
+
+function resetTestimonialTimer() {
+  if (document.querySelector('.testimonials-container')) {
+    clearInterval(testimonialInterval);
+    testimonialInterval = setInterval(rotateTestimonials, 10000);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const prevButton = document.querySelector('.testimonial-nav-btn.prev');
+  const nextButton = document.querySelector('.testimonial-nav-btn.next');
+
+  if (prevButton) {
+    prevButton.addEventListener('click', () => {
+      showTestimonial(currentTestimonial <= 1 ? testimonialCount : currentTestimonial - 1);
+      resetTestimonialTimer();
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener('click', () => {
+      showTestimonial(currentTestimonial >= testimonialCount ? 1 : currentTestimonial + 1);
+      resetTestimonialTimer();
+    });
+  }
+});
+
+// Screenshot rotation
+let currentScreenshot = 1;
+const screenshotCount = 3;
+
+function showScreenshot(index) {
+  document.querySelectorAll('.app-screenshot').forEach(s => s.classList.remove('active'));
+  const screenshot = document.getElementById(`screenshot${index}`);
+  if (screenshot) {
+    screenshot.classList.add('active');
+  }
+  currentScreenshot = index;
+  document.querySelectorAll('.nav-dot').forEach(dot => dot.classList.remove('active'));
+  const dot = document.querySelector(`.nav-dot[data-index="${index}"]`);
+  if (dot) {
+    dot.classList.add('active');
+  }
+}
+
+
+function rotateScreenshots() {
+  showScreenshot(currentScreenshot >= screenshotCount ? 1 : currentScreenshot + 1);
+}
+
+let screenshotInterval = setInterval(rotateScreenshots, 5000);
+
+function resetScreenshotTimer() {
+  clearInterval(screenshotInterval);
+  screenshotInterval = setInterval(rotateScreenshots, 5000);
+}
+
+document.querySelectorAll('.nav-dot').forEach(dot => {
+  dot.addEventListener('click', () => {
+    showScreenshot(parseInt(dot.getAttribute('data-index')));
+    resetScreenshotTimer();
+  });
+});
+
+// Scroll animation for sections
+const sections = document.querySelectorAll('.fade-in-section');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+sections.forEach(section => observer.observe(section));
+function toggleFAQ() {
+  const modal = document.getElementById("faqModal");
+  modal.style.display = modal.style.display === "none" ? "block" : "none";
+}
+
+function faqItem(question, answer) {
+  return `<div style="margin-bottom:20px;">
+    <h3 style="font-size:1.2rem; color:var(--darkBerry); margin-bottom:5px;">${question}</h3>
+    <p style="font-size:1rem; color:var(--slate); line-height:1.6;">${answer}</p>
+  </div>`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const faqItems = [
+    faqItem("📸 What does SketchBerry do?", "SketchBerry turns your photos into fun, printable coloring pages or full coloring books. Upload your images, choose a style, and get clean black-and-white outlines perfect for kids, crafts, or relaxing coloring time."),
+    faqItem("🖼 How many photos can I upload at once?", "You can upload up to 10 photos at a time to create a personalized coloring book."),
+    faqItem("📏 What paper sizes are supported?", "Standard (8.5” x 11”), Legal, and A4 — all great for home or professional printing."),
+    faqItem("🎨 What are themes?", "Themes like unicorns, dinosaurs, or outer space can be added to your scenes for a magical effect without removing your original setting."),
+    faqItem("🌟 What’s the difference between Standard and High Definition?", "Standard is great for quick fun pages. HD gives sharper outlines for faces, pets, and fine details. Use HD for keepsakes."),
+    faqItem("📥 Where are my creations saved?", "They're in Past Creations inside the app. You can revisit, download, or print them anytime."),
+    faqItem("🖨 Can I print the coloring pages?", "Yes! All pages are print-ready in image or PDF format."),
+    faqItem("⛔ Is there a daily limit?", "Yes, 50 coloring pages per day. Contact us if you need more or want commercial use."),
+    faqItem("❌ My photo didn’t work — what now?", "Try a clearer, well-lit image without too much clutter or heavy filters."),
+    faqItem("🧠 What’s the best kind of photo to use?", "Clear, centered, well-lit images without clutter work best. Avoid screenshots or low-res pics.")
+  ];
+  document.getElementById("faqItems").innerHTML = faqItems.join('');
+});
+
+    </script>
+    <div id="faqModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; padding:40px; box-sizing:border-box;">
+  <div style="background:white; max-width:800px; margin:auto; padding:30px; border-radius:12px; max-height:90vh; overflow-y:auto; position:relative;">
+    <button onclick="toggleFAQ()" style="position:absolute; top:15px; right:20px; font-size:1.5rem; background:none; border:none; cursor:pointer;">✖️</button>
+    <h2 style="font-family: 'Rounded Mplus 1c', sans-serif; font-size:2rem; margin-bottom:20px;">Frequently Asked Questions</h2>
+    <div id="faqItems"></div>
+  </div>
+</div>
+
+  </body>
+</html>
